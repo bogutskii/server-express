@@ -1,7 +1,10 @@
+const names = [];
+
 export default function info(req, res) {
-  const a = req.body.a;
-  const b = req.body.b;
-  res.send('info Here');
+  names.push(req.body.name);
+  res.status(200).json(names);
+
+  // res.send('info Here ' + names);
   //JSON.stringify(obj)
   //JSON.parse(json)
 }
