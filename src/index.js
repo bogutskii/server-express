@@ -15,9 +15,6 @@ parseResponse(app);
 cors(app);
 routes(app);
 
-// app.use('/', home);
-// app.use('/info', info);
-
 errorHandler(app);
 
 app.listen(PORT, () => {
