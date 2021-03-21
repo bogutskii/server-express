@@ -3,6 +3,7 @@ function dbConnect() {
   mongoose.connect('mongodb://localhost/express', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   });
 
   const db = mongoose.connection;

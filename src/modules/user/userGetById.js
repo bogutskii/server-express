@@ -1,10 +1,9 @@
 import User from './Model';
 
-export default function userGetAll(req, res) {
-  User.find()
-    // User.find({ email: 'asd@ggg.os' })
-    // .limit(2)
-    // .skip(1)
+export default function userGetById(req, res) {
+  const userId = req.params.userId;
+  User.findById(userId)
+
     .exec()
     .then((result) => {
       res.status(200).json(result);
