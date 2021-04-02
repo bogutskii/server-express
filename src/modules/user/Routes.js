@@ -4,10 +4,19 @@ import userGetAll from './userGetAll';
 import userGetById from './userGetById';
 import userUpdateById from './userUpdateById';
 import userDeleteById from './userDeleteById';
+import { check } from 'express-validator';
 
 const router = Router();
 
-router.post('/', userRegister);
+router.post(
+  '/',
+  userRegister,
+  [
+    check('email', 'email can`t be empty').notEmpty(),
+    check('password', 'password can`t be empty').isLength({ min: 6, max: 15 }),
+  ],
+  authController,
+);
 router.get('/', userGetAll);
 router.get('/:userId', userGetById); // GET http://localhost:5000/user/6056ebab2e3c27fead4aee39
 router.patch('/:userId', userUpdateById); // PATCH http://localhost:5000/user/6056ebab2e3c27fead4aee39
