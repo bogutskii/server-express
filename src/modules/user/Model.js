@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   email: {
     type: String,
+    unique: true,
     required: true,
   },
   password: {
@@ -12,6 +13,7 @@ const userSchema = new Schema({
     required: true,
     select: false,
   },
+  roles: [{ type: String, ref: 'Role' }],
   name: String,
 });
 
