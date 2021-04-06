@@ -1,6 +1,18 @@
-import User from './Model';
-import bcrypt from 'bcrypt'
+import User from '../user/Model';
+import Role from '../user/Model'
+import bcrypt from 'bcryptjs'
+import jwt from  'jsonwebtoken'
 import { validationResult } from 'express-validator'
+import {secret} from '../core/config.js'
+
+const generateAccessToken = (id, roles) => {
+    const payload = {
+        id,
+        roles
+    }
+    return jwt.sign(payload, secret, {expiresIn: "24h"} )
+}
+
 
 export default function authController(req, res) {
   const newUser = new User({
