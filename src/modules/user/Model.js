@@ -14,7 +14,10 @@ const userSchema = new Schema({
     select: false,
   },
   roles: [{ type: String, ref: 'Role' }],
-  name: String,
+  name: {
+    type: String,
+    required: true,
+  },
 });
 
 userSchema.index({ email: 1 }, { unique: true }); //unique user id in db
