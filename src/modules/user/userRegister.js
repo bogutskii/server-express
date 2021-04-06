@@ -28,4 +28,5 @@ export default function userRegister(req, res) {
       console.log(err);
       res.status(400).json('User not created');
     });
+  //  .finally(()={ console.log('end')})
 }
