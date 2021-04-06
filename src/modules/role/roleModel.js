@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const role = new Schema({
+const Role = new Schema({
   value: { type: String, unique: true, default: 'USER' },
 });
 
-export default mongoose.model('role', role);
+export default mongoose.model('Role', Role);
