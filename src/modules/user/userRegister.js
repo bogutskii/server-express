@@ -15,7 +15,7 @@ const generateAccessToken = (id, roles) => {
 
 export default function userRegister(req, res) {
   const newUser = new User({
-    name: req.body.name,
+    username: req.body.username,
     email: req.body.email,
     password: req.body.password,
   });
@@ -25,8 +25,6 @@ export default function userRegister(req, res) {
       res.status(200).json('User created');
     })
     .catch((err) => {
-      console.log(err);
       res.status(400).json('User not created');
     });
-  //  .finally(()={ console.log('end')})
 }

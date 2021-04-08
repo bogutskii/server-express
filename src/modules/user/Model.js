@@ -14,7 +14,7 @@ const userSchema = new Schema({
     select: false,
   },
   roles: [{ type: String, ref: 'Role' }],
-  name: {
+  username: {
     type: String,
     required: true,
   },
