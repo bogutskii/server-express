@@ -14,17 +14,22 @@ const generateAccessToken = (id, roles) => {
 };
 
 export default function userRegister(req, res) {
-  const newUser = new User({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-  });
-  newUser
-    .save()
-    .then(() => {
-      res.status(200).json('User created');
-    })
-    .catch((err) => {
-      res.status(400).json('User not created');
+  const errors = validationResult(req);
+  if (errors.isEmpty()) {
+    const newUser = new User({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
     });
+    newUser
+      .save()
+      .then(() => {
+        res.status(200).json('User created');
+      })
+      .catch((err) => {
+        res.status(400).json('User NOT registered');
+      });
+  } else {
+    return res.status(400).json({ message: 'User registered error', errors });
+  }
 }
