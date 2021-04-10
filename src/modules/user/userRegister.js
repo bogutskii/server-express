@@ -14,13 +14,23 @@ const generateAccessToken = (id, roles) => {
 };
 
 export default function userRegister(req, res) {
+
   const errors = validationResult(req);
+  const { password, username, email } = req.body;
+  const hashPassword = bcrypt.hashSync(password, 7);
   if (errors.isEmpty()) {
+    const candidate = User.findOne({ username });
+
     const newUser = new User({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
+      username: username,
+      email: email,
+      password: hashPassword,
     });
+    // if (candidate) {
+    //   return res
+    //     .status(400)
+    //     .json({ message: 'Пользователь с таким именем уже существует' });
+    // }
     newUser
       .save()
       .then(() => {

@@ -20,7 +20,7 @@ router.post(
   userRegister,
 );
 
-//router.post('/', userRegister);
+router.post('/', userRegister);
 router.get('/', userGetAll);
 router.get('/:userId', userGetById); // GET http://localhost:5000/user/6056ebab2e3c27fead4aee39
 router.patch('/:userId', userUpdateById); // PATCH http://localhost:5000/user/6056ebab2e3c27fead4aee39
