@@ -13,30 +13,20 @@ const generateAccessToken = (id, roles) => {
 
 export default function userLogin(req, res) {
   const { password, username } = req.body;
-
-  //const user = User.findById({username});
-
-  // if (!user) {
-  //   return res.status(400).json({message: `User ${username} not found`})
-  // }
-  // const validPassword = bcrypt.compareSync(password, user.password)
-  //
-  // if (!validPassword) {
-  //   return res.status(400).json({message: `Wrong password`})
-  // }
-  // const token = generateAccessToken(user._id, user.roles)
-  // return res.json({token})
-
-  User.findById({ username })
-    .exec()
+  User.findOne({ username })
     .then((result) => {
       const validPassword = bcrypt.compareSync(password, result.password);
-
+      // if (!user) {
+      //   return res.status(400).json({ message: `User ${username} not found` });
+      // } else
       if (!validPassword) {
         res.status(400).json({ message: 'Wrong password' });
-      } else {
-        res.status(200).json(generateAccessToken(result._id, result.roles));
       }
+      // else {
+      const token = generateAccessToken(result.id, (result.roles = 'user'));
+
+      res.status(200).json({ token });
+      // }
     })
     .catch((err) => {
       console.log(err);
