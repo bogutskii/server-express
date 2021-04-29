@@ -21,6 +21,6 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.index({ email: 1 }, { unique: true }); //unique user id in db
+//userSchema.index({ email: 1 }, { unique: true }); //unique user id in db
 
 export default mongoose.model('User', userSchema);

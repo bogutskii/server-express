@@ -13,6 +13,7 @@ const generateAccessToken = (id, roles) => {
 
 export default function userLogin(req, res) {
   const { password, username } = req.body;
+  console.log(username);
   User.findOne({ username })
     .then((result) => {
       const validPassword = bcrypt.compareSync(password, result.password);
